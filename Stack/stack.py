@@ -24,16 +24,16 @@ class Stack:
 
 # Stack Demo --
 
-myStack = Stack()
+# myStack = Stack()
 
-myStack.push('A')
-myStack.push('B')
-myStack.push('C')
+# myStack.push('A')
+# myStack.push('B')
+# myStack.push('C')
 
-print(myStack.getStack())
+# print(myStack.getStack())
 
-myStack.pop()
+# myStack.pop()
 
-print(myStack.getStack())
+# print(myStack.getStack())
 
-print(myStack.peek())
+# print(myStack.peek())
