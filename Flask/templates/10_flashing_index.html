@@ -1,0 +1,21 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h1>Flask message flashing example</h1>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li> {{message}} </li>
+            {% end for %}
+        </ul>
+        {% end if %}
+        {% end with %}
+
+    <p>Do you want to <a href="{{ url_for('login') }}"></a>login?</p>
+
+    </body>
+</html>
