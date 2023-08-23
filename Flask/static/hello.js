@@ -1,0 +1,3 @@
+const alertHellow = ()=>{
+    alert("Hello");
+}

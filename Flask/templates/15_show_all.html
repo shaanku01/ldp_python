@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h3><a href="{{ url_for('show_all') }}">Students List - SQL Alchemy</a> </h3> 
+        <hr/>
+
+        {% for message in get_flashed_messages()%}
+            {{ message }}
+        {% endfor%}
+
+        <h3> <a href="{{ url_for('new') }}"> Add Student</a> </h3>
+
+        <!-- Student Table -->
+
+        <table border=1> 
+            <thead>
+                <td>Name</td>
+                <td>Address</td>
+                <td>City</td>
+                <td>Pincode</td>
+            </thead>
+
+            <tbody>
+                {% for student in students %}
+                    <tr>
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.address }}</td>
+                        <td>{{ student.city }}</td>
+                        <td>{{ student.pin }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>
