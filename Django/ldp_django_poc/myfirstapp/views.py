@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse , JsonResponse
 
+from .forms import *
+
 # Create your views here.
 def myfunctioncall(request):
     return HttpResponse("Hello World")
@@ -40,3 +42,50 @@ def myThirdPage(request):
         "ans":ans
     }
     return render(request,'third.html', context=dictobj)
+
+
+def myImagePage(request):
+    return render(request,'imagepage.html')
+
+def myimagepage5(request,imagename):
+    myimage = str(imagename).lower()
+    if myimage == 'python':
+        var = True
+    else:
+        var = False     
+    return render(request,'imagepage5.html',context={'var' : var})
+
+def myForm(request):
+    return render(request,'myform.html')
+
+def submitMyForm(request):
+    mydictionary = {
+        "var1" : request.POST['mytext'] ,
+        "var2" : request.POST['mytextarea'],
+        "method": request.method
+    }
+    return JsonResponse(mydictionary)
+
+def myForm2(request):
+    if request.method == 'POST':
+        form =  FeedbackForm(request.POST)
+        if form.is_valid():
+            title = request.POST['title']
+            subject = request.POST['subject']
+            # var = str("Form submitted "+ str(request.method))
+            # return HttpResponse(var)
+            mydictionary = {
+                "form" : FeedbackForm()
+            }
+            if title != title.upper():
+                mydictionary['error'] = True
+                mydictionary['errormsg'] = "Title Should be in capital"
+            else:
+                mydictionary['success'] = True
+                mydictionary['successMessage'] = "Form Submitted"            
+            return render(request,'myform2.html',context=mydictionary)
+        else:
+            return render(request,'myform2.html',context={"form":form})
+    elif request.method == 'GET':
+        form = FeedbackForm()
+        return render(request,'myform2.html',context={"form":form})

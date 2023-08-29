@@ -1,0 +1,20 @@
+{% extends 'index.html' %} 
+{% load static %}
+
+{% block title %} My Third Page {% endblock %}
+
+
+{%block content %}
+<h1>you are in fourth page!!</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            {% if var %}
+            <img src="{% static 'python.png' %}"  class="img-fluid" alt="django pic">
+            {% else %}
+            <img src="{% static 'django.png' %}"  class="img-fluid" alt="django pic">
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
