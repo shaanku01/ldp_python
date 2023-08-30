@@ -14,12 +14,14 @@
 
 
   {% if error == True %}
+  {% for errormsg in errors %}
   <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 1rem;">
     <strong>{{ errormsg }}</strong>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
+  {% endfor %}
   {% endif %}
   <form method="POST">
     {% csrf_token %}

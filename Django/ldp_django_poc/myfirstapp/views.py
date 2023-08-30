@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse , JsonResponse
 
 from .forms import *
+import re
 
 # Create your views here.
 def myfunctioncall(request):
@@ -72,20 +73,34 @@ def myForm2(request):
         if form.is_valid():
             title = request.POST['title']
             subject = request.POST['subject']
+            email = request.POST['email']
             # var = str("Form submitted "+ str(request.method))
             # return HttpResponse(var)
             mydictionary = {
                 "form" : FeedbackForm()
             }
+            errors = []
+            errorFlag = False
             if title != title.upper():
-                mydictionary['error'] = True
-                mydictionary['errormsg'] = "Title Should be in capital"
-            else:
+                errorFlag = True
+                errors.append('Title Should be in capital')
+                # mydictionary['error'] = True
+                # mydictionary['errormsg'] = "Title Should be in capital"
+            if not re.search('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',email):
+                errorFlag = True
+                errors.append('Not a valid email address')
+            if errorFlag != True:
                 mydictionary['success'] = True
-                mydictionary['successMessage'] = "Form Submitted"            
+                mydictionary['successMessage'] = "Form Submitted"
+            
+            mydictionary['error'] = errorFlag
+            mydictionary['errors'] = errors
             return render(request,'myform2.html',context=mydictionary)
         else:
             return render(request,'myform2.html',context={"form":form})
     elif request.method == 'GET':
         form = FeedbackForm()
         return render(request,'myform2.html',context={"form":form})
+    
+def error_404_view(request,exception):
+    return render(request,'404.html')

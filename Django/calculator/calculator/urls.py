@@ -1,5 +1,5 @@
 """
-URL configuration for ldp_django_poc project.
+URL configuration for calculator project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -19,7 +19,6 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('myfirstapp.urls'))
+    path('',include("rootapp.urls")),
+    path('calculatorapp',include("calculatorapp.urls"))
 ]
-
-handler404 = 'myfirstapp.views.error_404_view'
