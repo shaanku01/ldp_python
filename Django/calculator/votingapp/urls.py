@@ -1,0 +1,9 @@
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.index ,name='index'),
+    path('getquery',views.getQuery,name='getQuery'),
+    path('sortdata',views.sortData,name='sortdata')
+    
+]
