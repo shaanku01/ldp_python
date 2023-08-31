@@ -1,0 +1,7 @@
+1. pip install Django
+
+2. django-admin startproject "<project-name>"
+
+3. python manage.py startapp "<app-name>"   (one project can have multiple apps.)
+
+4. python manage.py runserver
